@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ts-watch": "tsc --watch",
+    "build": "npx prisma generate && tsc",
     "start": "nodemon dist/src/app.js"
   },
   "keywords": [],
