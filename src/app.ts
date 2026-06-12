@@ -9,6 +9,7 @@ dotenv.config()
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.get("/", (_req, res) => {
     res.send("Backend is running");
 })
@@ -36,3 +37,7 @@ const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
 });
+
+function cors(): any {
+    throw new Error("Function not implemented.");
+}
