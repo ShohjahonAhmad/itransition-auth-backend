@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import type {Request, Response, NextFunction} from "express";
 import authenticated from "./middleware/authenticated.js";
+import cors from "cors";
 dotenv.config()
 
 const app = express();
@@ -37,7 +38,3 @@ const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
 });
-
-function cors(): any {
-    throw new Error("Function not implemented.");
-}
