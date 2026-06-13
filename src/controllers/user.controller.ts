@@ -1,18 +1,22 @@
 import type { RequestHandler } from "express";
 import prisma from "../prisma.js";
 import { UserStatus } from "../types/enums/UserStatus.js";
-import { count } from "node:console";
-
 
 export const getUsers: RequestHandler = async (req, res) => {
-    const usersDb = await prisma.user.findMany({
-        orderBy: {
-            lastLogin: "desc"
-        },
-        omit: {
-            password: true
-        },
-    })
+    const [usersDb, user] = await Promise.all([
+        prisma.user.findMany({
+            orderBy: {
+                lastLogin: "desc"
+            },
+            omit: {
+                password: true
+            },
+        }),
+        {
+            where: {id: req.user.id},
+            omit: {password: true}
+        }
+    ])
     const users = [];
 
     for(const user of usersDb) {
@@ -20,11 +24,6 @@ export const getUsers: RequestHandler = async (req, res) => {
         const {isBlocked, isVerified, ...rest} = user
         users.push({...rest, status: userStatus});
     }
-
-    const user = await prisma.user.findUnique({
-        where: {id: req.user.id},
-        omit: {password: true}
-    });
 
     res.status(200).json({users, user});
 }
