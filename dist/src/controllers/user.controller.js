@@ -1,26 +1,21 @@
 import prisma from "../prisma.js";
 import { UserStatus } from "../types/enums/UserStatus.js";
 export const getUsers = async (req, res) => {
-    const [usersDb, user] = await Promise.all([
-        prisma.user.findMany({
-            orderBy: {
-                lastLogin: "desc"
-            },
-            omit: {
-                password: true
-            },
-        }),
-        {
-            where: { id: req.user.id },
-            omit: { password: true }
-        }
-    ]);
+    const usersDb = await prisma.user.findMany({
+        orderBy: {
+            lastLogin: "desc"
+        },
+        omit: {
+            password: true
+        },
+    });
     const users = [];
     for (const user of usersDb) {
         const userStatus = user.isBlocked ? UserStatus.Blocked : user.isVerified ? UserStatus.Active : UserStatus.Unverified;
         const { isBlocked, isVerified, ...rest } = user;
         users.push({ ...rest, status: userStatus });
     }
+    const user = users.find(u => u.id === req.user.id);
     res.status(200).json({ users, user });
 };
 export const blockUsers = async (req, res) => {
