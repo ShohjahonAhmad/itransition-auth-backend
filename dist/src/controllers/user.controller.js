@@ -50,9 +50,13 @@ export const deleteUsers = async (req, res) => {
     });
 };
 export const deleteUnverifiedUsers = async (req, res) => {
+    const { userIds } = req.body;
     const result = await prisma.user.deleteMany({
         where: {
             isVerified: false,
+            id: {
+                in: userIds,
+            }
         },
     });
     res.status(200).json({

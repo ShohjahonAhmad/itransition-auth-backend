@@ -5,6 +5,6 @@ const router = Router();
 router.get("/", userController.getUsers);
 router.patch("/block", validation.BlockUsers, userController.blockUsers);
 router.delete("/", validation.DeleteUsers, userController.deleteUsers);
-router.delete("/unverified", userController.deleteUnverifiedUsers);
+router.delete("/unverified", validation.DeleteUsers, userController.deleteUnverifiedUsers);
 export default router;
 //# sourceMappingURL=user.route.js.map
