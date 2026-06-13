@@ -1,5 +1,13 @@
 import prisma from "./prisma.js";
 // await prisma.user.deleteMany();
+await prisma.user.update({
+    data: {
+        isBlocked: false,
+    },
+    where: {
+        email: "ahmshohjahon@gmail.com"
+    }
+});
 // await prisma.user.createMany({
 //      data: [
 //         {

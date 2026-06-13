@@ -16,7 +16,11 @@ export const getUsers = async (req, res) => {
         const { isBlocked, isVerified, ...rest } = user;
         users.push({ ...rest, status: userStatus });
     }
-    res.status(200).json({ users });
+    const user = await prisma.user.findUnique({
+        where: { id: req.user.id },
+        omit: { password: true }
+    });
+    res.status(200).json({ users, user });
 };
 export const blockUsers = async (req, res) => {
     const { userIds, block } = req.body;
