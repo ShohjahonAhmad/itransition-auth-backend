@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import "dotenv/config";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
+import { Prisma } from "../../generated/prisma/client.js";
 const EMAIL_USER = process.env.EMAIL_USER;
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -42,8 +43,8 @@ export const register = async (req, res) => {
         sendEmailToken(email, token).catch(console.error);
         res.status(201).json({ user });
     }
-    catch (error) {
-        if (error.code === "P2002") {
+    catch (err) {
+        if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002") {
             res.status(409).json({ error: `A user with this email already exists` });
             return;
         }
