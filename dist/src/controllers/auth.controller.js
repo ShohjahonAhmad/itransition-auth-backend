@@ -40,7 +40,7 @@ export const register = async (req, res) => {
                 password: true,
             }
         });
-        sendEmailToken(email, token).catch(console.error);
+        await sendEmailToken(email, token).catch(console.error); //without await to avoid blocking the response
         res.status(201).json({ user });
     }
     catch (err) {
