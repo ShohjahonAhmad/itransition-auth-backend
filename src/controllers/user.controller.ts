@@ -38,10 +38,7 @@ export const blockUsers: RequestHandler = async (req, res) => {
         }
     });
 
-    res.status(200).json({
-        message: `Users ${block ? "blocked" : "unblocked" } successfully`, 
-        count: result.count
-    });
+    res.status(200).json({message: `${result.count} users ${block ? "blocked" : "unblocked" } successfully`});
 }
 
 export const deleteUsers: RequestHandler = async (req, res) => {
@@ -55,10 +52,7 @@ export const deleteUsers: RequestHandler = async (req, res) => {
         },
     });
 
-    res.status(200).json({
-        message: `Users deleted successfully`, 
-        count: result.count
-    });
+    res.status(200).json({message: `${result.count} users deleted successfully`});
 }
 
 export const deleteUnverifiedUsers: RequestHandler = async (req, res) => {
@@ -72,9 +66,6 @@ export const deleteUnverifiedUsers: RequestHandler = async (req, res) => {
         },
     });
 
-    res.status(200).json({
-        message: `Users deleted successfully`, 
-        count: result.count
-    });
+    res.status(200).json({message: `${result.count} unverified users deleted successfully`});
 }
 

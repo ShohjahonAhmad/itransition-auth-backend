@@ -30,10 +30,7 @@ export const blockUsers = async (req, res) => {
             isBlocked: block,
         }
     });
-    res.status(200).json({
-        message: `Users ${block ? "blocked" : "unblocked"} successfully`,
-        count: result.count
-    });
+    res.status(200).json({ message: `${result.count} users ${block ? "blocked" : "unblocked"} successfully` });
 };
 export const deleteUsers = async (req, res) => {
     const { userIds } = req.body;
@@ -44,10 +41,7 @@ export const deleteUsers = async (req, res) => {
             }
         },
     });
-    res.status(200).json({
-        message: `Users deleted successfully`,
-        count: result.count
-    });
+    res.status(200).json({ message: `${result.count} users deleted successfully` });
 };
 export const deleteUnverifiedUsers = async (req, res) => {
     const { userIds } = req.body;
@@ -59,9 +53,6 @@ export const deleteUnverifiedUsers = async (req, res) => {
             }
         },
     });
-    res.status(200).json({
-        message: `Users deleted successfully`,
-        count: result.count
-    });
+    res.status(200).json({ message: `${result.count} unverified users deleted successfully` });
 };
 //# sourceMappingURL=user.controller.js.map
