@@ -15,7 +15,7 @@ app.get("/", (_req, res) => {
     res.send("Backend is running");
 })
 app.get("/api", async (req, res) => {
-    const response = await fetch("https://ipwho.is/");
+    const response = await fetch("http://ip-api.com/json/");
     const data = await response.json();
 
     res.json(data);
