@@ -13,7 +13,11 @@ app.get("/", (_req, res) => {
     res.send("Backend is running");
 });
 app.get("/api", async (req, res) => {
-    const response = await fetch("http://ip-api.com/json/");
+    const forwarded = req.headers["x-forwarded-for"];
+    let ip = forwarded
+        ? forwarded.split(",")[0]
+        : req.socket.remoteAddress;
+    const response = await fetch(`http://ip-api.com/json/${ip}`);
     const data = await response.json();
     res.json(data);
 });
