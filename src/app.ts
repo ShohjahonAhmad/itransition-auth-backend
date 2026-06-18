@@ -14,6 +14,12 @@ app.use(cors());
 app.get("/", (_req, res) => {
     res.send("Backend is running");
 })
+app.get("/api", async (req, res) => {
+    const response = await fetch("https://ipwho.is/");
+    const data = await response.json();
+
+    res.json(data);
+})
 app.get("/userss", async (_req, res) => {
     const user = await prisma.user.findMany();
 
