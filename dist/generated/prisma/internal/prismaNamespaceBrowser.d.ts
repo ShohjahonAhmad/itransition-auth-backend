@@ -28,6 +28,7 @@ export declare const AnyNull: import("@prisma/client-runtime-utils").AnyNullClas
 export declare const ModelName: {
     readonly User: "User";
     readonly EmailVerification: "EmailVerification";
+    readonly Holding: "Holding";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -55,6 +56,14 @@ export declare const EmailVerificationScalarFieldEnum: {
     readonly userId: "userId";
 };
 export type EmailVerificationScalarFieldEnum = (typeof EmailVerificationScalarFieldEnum)[keyof typeof EmailVerificationScalarFieldEnum];
+export declare const HoldingScalarFieldEnum: {
+    readonly id: "id";
+    readonly symbol: "symbol";
+    readonly shares: "shares";
+    readonly userId: "userId";
+    readonly createdAt: "createdAt";
+};
+export type HoldingScalarFieldEnum = (typeof HoldingScalarFieldEnum)[keyof typeof HoldingScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

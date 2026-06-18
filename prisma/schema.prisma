@@ -21,9 +21,11 @@ model User {
   isVerified Boolean @default(false)
   isBlocked  Boolean @default(false)
 
-  lastLogin DateTime            @default(now())
-  createdAt DateTime            @default(now())
-  tokens    EmailVerification[]
+  lastLogin DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  tokens   EmailVerification[]
+  holdings Holding[]
 }
 
 model EmailVerification {
@@ -33,4 +35,16 @@ model EmailVerification {
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Holding {
+  id String @id @default(uuid())
+
+  symbol String
+  shares Int
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 }

@@ -12,4 +12,9 @@ export type User = Prisma.UserModel;
  *
  */
 export type EmailVerification = Prisma.EmailVerificationModel;
+/**
+ * Model Holding
+ *
+ */
+export type Holding = Prisma.HoldingModel;
 //# sourceMappingURL=browser.d.ts.map

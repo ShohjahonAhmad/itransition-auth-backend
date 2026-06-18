@@ -233,6 +233,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export declare const ModelName: {
     readonly User: "User";
     readonly EmailVerification: "EmailVerification";
+    readonly Holding: "Holding";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -245,7 +246,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user" | "emailVerification";
+        modelProps: "user" | "emailVerification" | "holding";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -397,6 +398,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        Holding: {
+            payload: Prisma.$HoldingPayload<ExtArgs>;
+            fields: Prisma.HoldingFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.HoldingFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.HoldingFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>;
+                };
+                findFirst: {
+                    args: Prisma.HoldingFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.HoldingFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>;
+                };
+                findMany: {
+                    args: Prisma.HoldingFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>[];
+                };
+                create: {
+                    args: Prisma.HoldingCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>;
+                };
+                createMany: {
+                    args: Prisma.HoldingCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.HoldingCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>[];
+                };
+                delete: {
+                    args: Prisma.HoldingDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>;
+                };
+                update: {
+                    args: Prisma.HoldingUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.HoldingDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.HoldingUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.HoldingUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>[];
+                };
+                upsert: {
+                    args: Prisma.HoldingUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HoldingPayload>;
+                };
+                aggregate: {
+                    args: Prisma.HoldingAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateHolding>;
+                };
+                groupBy: {
+                    args: Prisma.HoldingGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.HoldingGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.HoldingCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.HoldingCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -449,6 +524,14 @@ export declare const EmailVerificationScalarFieldEnum: {
     readonly userId: "userId";
 };
 export type EmailVerificationScalarFieldEnum = (typeof EmailVerificationScalarFieldEnum)[keyof typeof EmailVerificationScalarFieldEnum];
+export declare const HoldingScalarFieldEnum: {
+    readonly id: "id";
+    readonly symbol: "symbol";
+    readonly shares: "shares";
+    readonly userId: "userId";
+    readonly createdAt: "createdAt";
+};
+export type HoldingScalarFieldEnum = (typeof HoldingScalarFieldEnum)[keyof typeof HoldingScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -609,6 +692,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
     user?: Prisma.UserOmit;
     emailVerification?: Prisma.EmailVerificationOmit;
+    holding?: Prisma.HoldingOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

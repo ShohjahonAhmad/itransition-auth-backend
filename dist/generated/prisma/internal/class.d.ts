@@ -139,6 +139,17 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get emailVerification(): Prisma.EmailVerificationDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.holding`: Exposes CRUD operations for the **Holding** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Holdings
+      * const holdings = await prisma.holding.findMany()
+      * ```
+      */
+    get holding(): Prisma.HoldingDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;
 //# sourceMappingURL=class.d.ts.map

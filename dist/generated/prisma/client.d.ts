@@ -31,4 +31,9 @@ export type User = Prisma.UserModel;
  *
  */
 export type EmailVerification = Prisma.EmailVerificationModel;
+/**
+ * Model Holding
+ *
+ */
+export type Holding = Prisma.HoldingModel;
 //# sourceMappingURL=client.d.ts.map

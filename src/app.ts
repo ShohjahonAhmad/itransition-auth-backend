@@ -42,10 +42,85 @@ app.get("/me", (req, res) => {
     res.json(req.user);
 });
 
+app.get("/portfolio", async (req, res) => {
+    const userId = req.user.id;
 
+    const holdings = await prisma.holding.findMany({
+        where: { userId },
+    })
+
+    res.json({holdings})
+})
+
+app.post("/portfolio", async (req, res) => {
+    const userId = req.user.id;
+    const { symbol, shares } = req.body;
+
+    if(!symbol || !shares) {
+        res.status(400).json({error: "Symbol and quantity are required"});
+        return;
+    }
+
+    const existingHolding =
+    await prisma.holding.findFirst({
+        where: {
+            userId,
+            symbol,
+        }
+    });
+
+    if (existingHolding) {
+        const updated =
+            await prisma.holding.update({
+                where: {
+                    id: existingHolding.id,
+                },
+                data: {
+                    shares:
+                        existingHolding.shares + shares,
+                }
+            });
+
+        return res.json({ holding: updated });
+    }
+
+    const holding = await prisma.holding.create({
+        data: {
+            userId,
+            symbol,
+            shares,
+        }
+    })
+
+    res.json({holding})
+})
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
     res.status(400).json({error: err.message});
+});
+
+app.delete("/portfolio/:id", async (req, res) => {
+    const userId = req.user.id;
+    const id = req.params.id;
+
+    const holding = await prisma.holding.findFirst({
+        where: {
+            id,
+            userId,
+        }
+    });
+
+    if (!holding) {
+        return res.status(404).json({
+            error: "Holding not found"
+        });
+    }
+
+    await prisma.holding.delete({
+        where: { id }
+    });
+
+    res.sendStatus(204);
 });
 
 const PORT = process.env.PORT || 8081;

@@ -163,6 +163,7 @@ export type UserWhereInput = {
     lastLogin?: Prisma.DateTimeFilter<"User"> | Date | string;
     createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
     tokens?: Prisma.EmailVerificationListRelationFilter;
+    holdings?: Prisma.HoldingListRelationFilter;
 };
 export type UserOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -174,6 +175,7 @@ export type UserOrderByWithRelationInput = {
     lastLogin?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     tokens?: Prisma.EmailVerificationOrderByRelationAggregateInput;
+    holdings?: Prisma.HoldingOrderByRelationAggregateInput;
 };
 export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -188,6 +190,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
     lastLogin?: Prisma.DateTimeFilter<"User"> | Date | string;
     createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
     tokens?: Prisma.EmailVerificationListRelationFilter;
+    holdings?: Prisma.HoldingListRelationFilter;
 }, "id" | "email">;
 export type UserOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -225,6 +228,7 @@ export type UserCreateInput = {
     lastLogin?: Date | string;
     createdAt?: Date | string;
     tokens?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput;
+    holdings?: Prisma.HoldingCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateInput = {
     id?: string;
@@ -236,6 +240,7 @@ export type UserUncheckedCreateInput = {
     lastLogin?: Date | string;
     createdAt?: Date | string;
     tokens?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput;
+    holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -247,6 +252,7 @@ export type UserUpdateInput = {
     lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     tokens?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput;
+    holdings?: Prisma.HoldingUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -258,6 +264,7 @@ export type UserUncheckedUpdateInput = {
     lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     tokens?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput;
+    holdings?: Prisma.HoldingUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateManyInput = {
     id?: string;
@@ -344,6 +351,18 @@ export type UserUpdateOneRequiredWithoutTokensNestedInput = {
     connect?: Prisma.UserWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTokensInput, Prisma.UserUpdateWithoutTokensInput>, Prisma.UserUncheckedUpdateWithoutTokensInput>;
 };
+export type UserCreateNestedOneWithoutHoldingsInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutHoldingsInput, Prisma.UserUncheckedCreateWithoutHoldingsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutHoldingsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+};
+export type UserUpdateOneRequiredWithoutHoldingsNestedInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutHoldingsInput, Prisma.UserUncheckedCreateWithoutHoldingsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutHoldingsInput;
+    upsert?: Prisma.UserUpsertWithoutHoldingsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHoldingsInput, Prisma.UserUpdateWithoutHoldingsInput>, Prisma.UserUncheckedUpdateWithoutHoldingsInput>;
+};
 export type UserCreateWithoutTokensInput = {
     id?: string;
     name: string;
@@ -353,6 +372,7 @@ export type UserCreateWithoutTokensInput = {
     isBlocked?: boolean;
     lastLogin?: Date | string;
     createdAt?: Date | string;
+    holdings?: Prisma.HoldingCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutTokensInput = {
     id?: string;
@@ -363,6 +383,7 @@ export type UserUncheckedCreateWithoutTokensInput = {
     isBlocked?: boolean;
     lastLogin?: Date | string;
     createdAt?: Date | string;
+    holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutTokensInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -386,6 +407,7 @@ export type UserUpdateWithoutTokensInput = {
     isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    holdings?: Prisma.HoldingUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutTokensInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -396,15 +418,75 @@ export type UserUncheckedUpdateWithoutTokensInput = {
     isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    holdings?: Prisma.HoldingUncheckedUpdateManyWithoutUserNestedInput;
+};
+export type UserCreateWithoutHoldingsInput = {
+    id?: string;
+    name: string;
+    email: string;
+    password: string;
+    isVerified?: boolean;
+    isBlocked?: boolean;
+    lastLogin?: Date | string;
+    createdAt?: Date | string;
+    tokens?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput;
+};
+export type UserUncheckedCreateWithoutHoldingsInput = {
+    id?: string;
+    name: string;
+    email: string;
+    password: string;
+    isVerified?: boolean;
+    isBlocked?: boolean;
+    lastLogin?: Date | string;
+    createdAt?: Date | string;
+    tokens?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput;
+};
+export type UserCreateOrConnectWithoutHoldingsInput = {
+    where: Prisma.UserWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserCreateWithoutHoldingsInput, Prisma.UserUncheckedCreateWithoutHoldingsInput>;
+};
+export type UserUpsertWithoutHoldingsInput = {
+    update: Prisma.XOR<Prisma.UserUpdateWithoutHoldingsInput, Prisma.UserUncheckedUpdateWithoutHoldingsInput>;
+    create: Prisma.XOR<Prisma.UserCreateWithoutHoldingsInput, Prisma.UserUncheckedCreateWithoutHoldingsInput>;
+    where?: Prisma.UserWhereInput;
+};
+export type UserUpdateToOneWithWhereWithoutHoldingsInput = {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<Prisma.UserUpdateWithoutHoldingsInput, Prisma.UserUncheckedUpdateWithoutHoldingsInput>;
+};
+export type UserUpdateWithoutHoldingsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    tokens?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput;
+};
+export type UserUncheckedUpdateWithoutHoldingsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    lastLogin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    tokens?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput;
 };
 /**
  * Count Type UserCountOutputType
  */
 export type UserCountOutputType = {
     tokens: number;
+    holdings: number;
 };
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     tokens?: boolean | UserCountOutputTypeCountTokensArgs;
+    holdings?: boolean | UserCountOutputTypeCountHoldingsArgs;
 };
 /**
  * UserCountOutputType without action
@@ -421,6 +503,12 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 export type UserCountOutputTypeCountTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.EmailVerificationWhereInput;
 };
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHoldingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.HoldingWhereInput;
+};
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
@@ -431,6 +519,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     lastLogin?: boolean;
     createdAt?: boolean;
     tokens?: boolean | Prisma.User$tokensArgs<ExtArgs>;
+    holdings?: boolean | Prisma.User$holdingsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["user"]>;
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -466,6 +555,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "isVerified" | "isBlocked" | "lastLogin" | "createdAt", ExtArgs["result"]["user"]>;
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     tokens?: boolean | Prisma.User$tokensArgs<ExtArgs>;
+    holdings?: boolean | Prisma.User$holdingsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -474,6 +564,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: "User";
     objects: {
         tokens: Prisma.$EmailVerificationPayload<ExtArgs>[];
+        holdings: Prisma.$HoldingPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -814,6 +905,7 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
     tokens<T extends Prisma.User$tokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    holdings<T extends Prisma.User$holdingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$holdingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HoldingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1244,6 +1336,29 @@ export type User$tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
     take?: number;
     skip?: number;
     distinct?: Prisma.EmailVerificationScalarFieldEnum | Prisma.EmailVerificationScalarFieldEnum[];
+};
+/**
+ * User.holdings
+ */
+export type User$holdingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Holding
+     */
+    select?: Prisma.HoldingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Holding
+     */
+    omit?: Prisma.HoldingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.HoldingInclude<ExtArgs> | null;
+    where?: Prisma.HoldingWhereInput;
+    orderBy?: Prisma.HoldingOrderByWithRelationInput | Prisma.HoldingOrderByWithRelationInput[];
+    cursor?: Prisma.HoldingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.HoldingScalarFieldEnum | Prisma.HoldingScalarFieldEnum[];
 };
 /**
  * User without action

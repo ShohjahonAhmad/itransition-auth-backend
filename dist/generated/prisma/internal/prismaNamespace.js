@@ -69,7 +69,8 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 export const ModelName = {
     User: 'User',
-    EmailVerification: 'EmailVerification'
+    EmailVerification: 'EmailVerification',
+    Holding: 'Holding'
 };
 /**
  * Enums
@@ -95,6 +96,13 @@ export const EmailVerificationScalarFieldEnum = {
     token: 'token',
     tokenExpiry: 'tokenExpiry',
     userId: 'userId'
+};
+export const HoldingScalarFieldEnum = {
+    id: 'id',
+    symbol: 'symbol',
+    shares: 'shares',
+    userId: 'userId',
+    createdAt: 'createdAt'
 };
 export const SortOrder = {
     asc: 'asc',
